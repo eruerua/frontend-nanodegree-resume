@@ -27,7 +27,7 @@ var work = {
     workDates: "2015.7",
     workLocation: "nanjing",
     workDescription: "boring"
-    }
+    };
 var education = {
     schoolStart: "nanjing",
     schoolName: "njtech",
@@ -35,8 +35,8 @@ var education = {
     schoolDates: "2008",
     schoolLocation: "nanjing",
     schoolMajor: "chemical"
-    }
-};
+    };
+
 
 var formattedName = HTMLheaderName.replace("%data%",bio.name);
 var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
@@ -50,8 +50,8 @@ var formattedskillsStart = HTMLskillsStart;
 var formattedskills1 = HTMLskills.replace("%data%",bio.skills[0]);
 var formattedskills2 = HTMLskills.replace("%data%",bio.skills[1]);
 
-var formattedworkStart = HTMLworkStart.replace("%data%",education.work.workStart);
-var formattedworkEmployer = HTMLworkEmployer.replace("%data%",education.work.workEmployer);
-var formattedworkTitle = HTMLworkTitle.replace("%data%",education.work.workTitle);
+var formattedworkStart = HTMLworkStart.replace("%data%",work.workStart);
+var formattedworkEmployer = HTMLworkEmployer.replace("%data%",work.workEmployer);
+var formattedworkTitle = HTMLworkTitle.replace("%data%",work.workTitle);
 $("#header").prepend([formattedName,formattedRole,formattedmobile,formattedemail,formattedgithub,formattedlocation,formattedbioPic,formattedwelcomeMsg,formattedskillsStart,formattedskills1,formattedskills2]);
 $("#workExperience").append([formattedworkStart,formattedworkEmployer+formattedworkTitle]);
