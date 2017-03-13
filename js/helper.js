@@ -93,44 +93,39 @@ $(document).click(function(loc) {
 
 
 
-
-function locationFinder() {
-
-  // initializes an empty array
-  var locations = [];
-
-  // adds the single location property from bio to the locations array
-  locations.push(bio.contacts.location);
-
-  // iterates through school locations and appends each location to
-  // the locations array. Note that forEach is used for array iteration
-  // as described in the Udacity FEND Style Guide:
-  // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-  education.schools.forEach(function(school){
-    locations.push(school.location);
-  });
-
-  // iterates through work locations and appends each location to
-  // the locations array. Note that forEach is used for array iteration
-  // as described in the Udacity FEND Style Guide:
-  // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-  work.jobs.forEach(function(job){
-    locations.push(job.location);
-  });
-  console.log(locations);
-  return locations;
-
-}
-
-
-var locations = locationFinder();
 var map = new AMap.Map("map", {
     resizeEnable: true
 });
 function geocoder() {
     var geocoder = new AMap.Geocoder();
     //地理编码,返回地理编码结果
+    function locationFinder() {
 
+      // initializes an empty array
+      var locations = [];
+
+      // adds the single location property from bio to the locations array
+      locations.push(bio.contacts.location);
+
+      // iterates through school locations and appends each location to
+      // the locations array. Note that forEach is used for array iteration
+      // as described in the Udacity FEND Style Guide:
+      // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
+      education.schools.forEach(function(school){
+        locations.push(school.location);
+      });
+
+      // iterates through work locations and appends each location to
+      // the locations array. Note that forEach is used for array iteration
+      // as described in the Udacity FEND Style Guide:
+      // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
+      work.jobs.forEach(function(job){
+        locations.push(job.location);
+      });
+      console.log(locations);
+      return locations;
+    }
+    var locations = locationFinder();
     locations.forEach(function(city) {
         geocoder.getLocation(city, function(status, result) {
             if (status === 'complete' && result.info === 'OK') {
@@ -166,3 +161,4 @@ function geocoder_CallBack(data) {
     map.setFitView();
     // document.getElementById("result").innerHTML = resultStr;
 }
+
