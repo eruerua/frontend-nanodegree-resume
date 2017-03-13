@@ -13,7 +13,7 @@ var bio = {
         mobile: "15951603521",
         email: "houhaoeru@163.com",
         github: "erueru",
-        location: "Nan Jing"
+        location: "南京市"
     },
     pictureURL: "images/me.jpg",
     welcomeMessage: "Hello",
@@ -24,7 +24,7 @@ var education = {
     "schools": [
     {
         "names": "nitech",
-        "location": "Nan Jing",
+        "location": "南京市",
         "degree": "master",
         "major": "engineer",
         "date": "2008",
@@ -40,14 +40,14 @@ var work = {
         "title": "engineer",
         "dates": "2008",
         "description": "haha",
-        "location": "Nan Jing"
+        "location": "南京市"
     },
     {
         "employer": "haha2",
         "title": "engineer2",
         "dates": "2015",
         "description": "haha",
-        "location": "xu zhou"
+        "location": "徐州市"
     }]
 };
 
