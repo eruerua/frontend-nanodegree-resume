@@ -93,9 +93,9 @@ $(document).click(function(loc) {
 
 
 
-
+var map;
 function geocoder() {
-  var map = new AMap.Map("map", {
+  map = new AMap.Map("map", {
       resizeEnable: true
   });
   var geocoder = new AMap.Geocoder();
