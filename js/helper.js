@@ -86,6 +86,7 @@ function logClicks(x,y) {
 
 $(document).click(function(loc) {
   // your code goes here!
+  logClicks(loc.pageX,loc.pageY);
 });
 
 
@@ -114,7 +115,7 @@ function initializeMap() {
   appended to #mapDiv in resumeBuilder.js.
   */
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
-
+  // map = new BMap.Map("map");
 
   /*
   locationFinder() returns an array of every location string from the JSONs
@@ -143,8 +144,9 @@ function initializeMap() {
     work.jobs.forEach(function(job){
       locations.push(job.location);
     });
-
+    console.log(locations);
     return locations;
+
   }
 
   /*
@@ -238,11 +240,11 @@ Uncomment the code below when you're ready to implement a Google Map!
 */
 
 // Calls the initializeMap() function when the page loads
-//window.addEventListener('load', initializeMap);
+window.addEventListener('load', initializeMap);
 
 // Vanilla JS way to listen for resizing of the window
 // and adjust map bounds
-//window.addEventListener('resize', function(e) {
+window.addEventListener('resize', function(e) {
   //Make sure the map bounds get updated on page resize
-//  map.fitBounds(mapBounds);
-//});
+ map.fitBounds(mapBounds);
+});
