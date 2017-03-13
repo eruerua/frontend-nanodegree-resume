@@ -115,7 +115,7 @@ function initializeMap() {
   appended to #mapDiv in resumeBuilder.js.
   */
   map = new google.maps.Map(document.querySelector('#map'), mapOptions);
-  // map = new BMap.Map("map");
+
 
   /*
   locationFinder() returns an array of every location string from the JSONs
