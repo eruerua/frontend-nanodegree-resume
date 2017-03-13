@@ -93,72 +93,75 @@ $(document).click(function(loc) {
 
 
 
-var map = new AMap.Map("map", {
-    resizeEnable: true
-});
+
 function geocoder() {
-    var geocoder = new AMap.Geocoder();
-    //地理编码,返回地理编码结果
-    function locationFinder() {
+  var map = new AMap.Map("map", {
+      resizeEnable: true
+  });
+  var geocoder = new AMap.Geocoder();
+  //地理编码,返回地理编码结果
+  function locationFinder() {
 
-      // initializes an empty array
-      var locations = [];
+    // initializes an empty array
+    var locations = [];
 
-      // adds the single location property from bio to the locations array
-      locations.push(bio.contacts.location);
+    // adds the single location property from bio to the locations array
+    locations.push(bio.contacts.location);
 
-      // iterates through school locations and appends each location to
-      // the locations array. Note that forEach is used for array iteration
-      // as described in the Udacity FEND Style Guide:
-      // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-      education.schools.forEach(function(school){
-        locations.push(school.location);
+    // iterates through school locations and appends each location to
+    // the locations array. Note that forEach is used for array iteration
+    // as described in the Udacity FEND Style Guide:
+    // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
+    education.schools.forEach(function(school){
+      locations.push(school.location);
+    });
+
+    // iterates through work locations and appends each location to
+    // the locations array. Note that forEach is used for array iteration
+    // as described in the Udacity FEND Style Guide:
+    // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
+    work.jobs.forEach(function(job){
+      locations.push(job.location);
+    });
+    console.log(locations);
+    return locations;
+  }
+  var locations = locationFinder();
+  locations.forEach(function(city) {
+      geocoder.getLocation(city, function(status, result) {
+          if (status === 'complete' && result.info === 'OK') {
+              geocoder_CallBack(result);
+          }
       });
-
-      // iterates through work locations and appends each location to
-      // the locations array. Note that forEach is used for array iteration
-      // as described in the Udacity FEND Style Guide:
-      // https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html#for-in-loop
-      work.jobs.forEach(function(job){
-        locations.push(job.location);
+  });
+  function addMarker(i, d) {
+      var marker = new AMap.Marker({
+          map: map,
+          position: [ d.location.getLng(),  d.location.getLat()]
       });
-      console.log(locations);
-      return locations;
-    }
-    var locations = locationFinder();
-    locations.forEach(function(city) {
-        geocoder.getLocation(city, function(status, result) {
-            if (status === 'complete' && result.info === 'OK') {
-                geocoder_CallBack(result);
-            }
-        });
-    });
+      var infoWindow = new AMap.InfoWindow({
+          content: d.formattedAddress,
+          offset: {x: 0, y: -30}
+      });
+      marker.on("mouseover", function(e) {
+          infoWindow.open(map, marker.getPosition());
+      });
+  }
+  //地理编码返回结果展示
+  function geocoder_CallBack(data) {
+      var resultStr = "";
+      //地理编码结果数组
+      var geocode = data.geocodes;
+      for (var i = 0; i < geocode.length; i++) {
+          //拼接输出html
+          // resultStr += "<span style=\"font-size: 12px;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\">" + "<b>地址</b>：" + geocode[i].formattedAddress + "" + "&nbsp;&nbsp;<b>的地理编码结果是:</b><b>&nbsp;&nbsp;&nbsp;&nbsp;坐标</b>：" + geocode[i].location.getLng() + ", " + geocode[i].location.getLat() + "" + "<b>&nbsp;&nbsp;&nbsp;&nbsp;匹配级别</b>：" + geocode[i].level + "</span>";
+          addMarker(i, geocode[i]);
+      }
+      map.setFitView();
+      // document.getElementById("result").innerHTML = resultStr;
+  }
+}
 
-}
-function addMarker(i, d) {
-    var marker = new AMap.Marker({
-        map: map,
-        position: [ d.location.getLng(),  d.location.getLat()]
-    });
-    var infoWindow = new AMap.InfoWindow({
-        content: d.formattedAddress,
-        offset: {x: 0, y: -30}
-    });
-    marker.on("mouseover", function(e) {
-        infoWindow.open(map, marker.getPosition());
-    });
-}
-//地理编码返回结果展示
-function geocoder_CallBack(data) {
-    var resultStr = "";
-    //地理编码结果数组
-    var geocode = data.geocodes;
-    for (var i = 0; i < geocode.length; i++) {
-        //拼接输出html
-        // resultStr += "<span style=\"font-size: 12px;padding:0px 0 4px 2px; border-bottom:1px solid #C1FFC1;\">" + "<b>地址</b>：" + geocode[i].formattedAddress + "" + "&nbsp;&nbsp;<b>的地理编码结果是:</b><b>&nbsp;&nbsp;&nbsp;&nbsp;坐标</b>：" + geocode[i].location.getLng() + ", " + geocode[i].location.getLat() + "" + "<b>&nbsp;&nbsp;&nbsp;&nbsp;匹配级别</b>：" + geocode[i].level + "</span>";
-        addMarker(i, geocode[i]);
-    }
-    map.setFitView();
-    // document.getElementById("result").innerHTML = resultStr;
-}
+
+window.addEventListener('load', geocoder);
 
