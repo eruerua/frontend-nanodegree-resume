@@ -86,6 +86,7 @@ var formattedwelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
 $("#header").prepend([formattedName,formattedRole]);//增加name和role如果不添加，按照index.html中的js判断，则不会显现header
 
 $("#topContacts").append([formattedmobile,formattedemail,formattedgithub,formattedlocation]);//添加联系方式
+$("#footerContacts").append([formattedmobile,formattedemail,formattedgithub,formattedlocation]);//添加联系方式
 
 $("#header").append([formattedbioPic,formattedwelcomeMsg]);//添加图片和欢迎词
 
