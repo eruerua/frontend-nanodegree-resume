@@ -7,17 +7,17 @@ This is empty on purpose! Your code to build the resume will go here.
  //  $("#main").append([funThoughts]);
 
 var bio = {
-    name: "ha ha",
+    name: "侯浩",
     role: "web developer",
     contacts: {
         mobile: "15951603521",
         email: "houhaoeru@163.com",
-        github: "erueru",
+        github: "eruerua",
         location: "南京市"
     },
-    pictureURL: "images/me.jpg",
-    welcomeMessage: "Hello",
-    skills: ["dota", "basketball","football","computer"]
+    pictureURL: "images/rickandmorty.jpg",
+    welcomeMessage: "We must travel in the direction of our fear --John Berryman",
+    skills: ["basketball","computer"],
 };
 
 var education = {
@@ -83,11 +83,16 @@ var formattedwelcomeMsg = HTMLwelcomeMsg.replace("%data%",bio.welcomeMessage);
 // var formattedworkStart = HTMLworkStart.replace("%data%",work.workStart);
 // var formattedworkEmployer = HTMLworkEmployer.replace("%data%",work.workEmployer);
 // var formattedworkTitle = HTMLworkTitle.replace("%data%",work.workTitle);
+
+
+$("#header").prepend([formattedbioPic]);//添加图片和欢迎词
+
 $("#header").prepend([formattedName,formattedRole]);//增加name和role如果不添加，按照index.html中的js判断，则不会显现header
+
+$("#header").append([formattedwelcomeMsg]);//添加图片和欢迎词
 
 $("#topContacts").append([formattedmobile,formattedemail,formattedgithub,formattedlocation]);//添加联系方式
 
-$("#header").append([formattedbioPic,formattedwelcomeMsg]);//添加图片和欢迎词
 
 //如果存在skills则显示出来。
 if(bio.skills.length !== 0) {
@@ -148,6 +153,5 @@ projects.display = function() {
 };
 projects.display();
 
-$("#main").append(internationalizeButton);
 $("#mapDiv").append(googleMap);
 

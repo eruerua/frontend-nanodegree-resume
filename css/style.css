@@ -129,7 +129,7 @@ a {
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: #002b50;
 }
 
 .flex-box {
@@ -163,16 +163,16 @@ ul {
   display: none;
 }
 
-img {
-  padding: 10px;
-}
-
 span {
   padding: 5px;
 }
 
 #lets-connect {
   text-align: center;
+}
+
+.verAli {
+  vertical-align: middle;
 }
 
 /* Media queries to handle various device widths */
