@@ -175,6 +175,44 @@ span {
   vertical-align: middle;
 }
 
+.slide-menu {
+    position: absolute;
+    top: 150px;
+    right: 0;
+    transform-origin: 100% 0% 0px; 
+    transform: matrix(1, 0, 0, 1, 0, 0); 
+    display: block;
+    transition: transform 0.2s;
+}
+
+.slide-menu-img img{
+  width: 14em;
+  margin: 0 auto;
+}
+
+.slide-menu-button {
+  display: inline-block;
+  background-color: #e16b8c;
+  cursor: pointer;
+  border: 1px solid #e16b8c;
+  border-radius: 5px;
+}
+
+.slide-menu-button p {
+  font-size: 22px;
+  padding: 2px;
+}
+
+.menu-hidden .slide-menu-img img{
+  display: none;
+}
+
+.menu-hidden .slide-menu {
+    transform-origin: 100% 0% 0px; 
+    transform: matrix(0, -1, 1, 0, -26, 0); 
+    display: block;
+}
+
 /* Media queries to handle various device widths */
 
 @media only screen and (max-width: 1024px) {

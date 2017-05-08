@@ -124,41 +124,54 @@ var work = {
     }
 };
 
-// var projects = {
-//     projects: [{
-//             title: "Haha1",
-//             dates: "2013",
-//             description: "This is project haha1",
-//             images: ["images/proj2.gif", "images/proj2.gif"]
-//         },
-//         {
-//             title: "Haha2",
-//             dates: "2014",
-//             description: "This is project haha2",
-//             images: ["images/proj3.gif", "images/proj3.gif"]
-//         }
-//     ],
-//     display: function() {
-//         projects.projects.forEach(function(element) {
-//             $("#projects").append(HTMLprojectStart);
-//             var formattedprojectTitle = HTMLprojectTitle.replace("%data%", element.title);
-//             var formattedprojectDates = HTMLprojectDates.replace("%data%", element.dates);
-//             var formattedprojectDescription = HTMLprojectDescription.replace("%data%", element.description);
-//             $(".project-entry:last").append([formattedprojectTitle, formattedprojectDates, formattedprojectDescription]);
-//             element.images.forEach(function(imageUrl) {
-//                 var formattedprojectImage = HTMLprojectImage.replace("%data%", imageUrl);
-//                 $(".project-entry:last").append(formattedprojectImage);
-//             });
+var projects = {
+    projects: [{
+            title: "前端纳米学位街机游戏克隆项目",
+            dates: "2017",
+            description: "根据得到的可视化资源和游戏循环引擎，然后通过向游戏添加一系列实体（包括玩家角色和敌人），以重新创建经典街机游戏“青蛙过河”。",
+            url: "https://github.com/eruerua/ArcadeGameClone"
+        },
+        {
+            title: "前端纳米学位网站优化",
+            dates: "2017",
+            description: "优化提供的具有各种优化及性能相关问题的网站，使其达到目标的PageSpeed分数，并以60帧/秒的速度运行。",
+            url: "https://github.com/eruerua/frontend-nanodegree-mobile-portfolio"
+        },
+        {
+            title: "前端纳米学位街区地图",
+            dates: "2017",
+            description: "开发一个具有你所在区域或想访问的区域的地图的单页应用程序。然后，为此地图添加其他功能，包括突出显示的地点、有关这些地点的第三方数据以及浏览内容的不同方式。",
+            url: "https://github.com/eruerua/streetMap"
+        },
+        {
+            title: "前端纳米学位RSS阅读器测试",
+            dates: "2017",
+            description: "根据一个基于Web的RSS反馈阅读应用程序编写Jasmine测试套件",
+            url: "https://github.com/eruerua/feedRead"
+        }
+    ],
+    display: function() {
+        projects.projects.forEach(function(element) {
+            $("#projects").append(HTMLprojectStart);
+            var formattedprojectTitle = HTMLprojectTitle.replace("%data%", element.title).replace("#",element.url);
+            var formattedprojectDates = HTMLprojectDates.replace("%data%", element.dates);
+            var formattedprojectDescription = HTMLprojectDescription.replace("%data%", element.description);
+            $(".project-entry:last").append([formattedprojectTitle, formattedprojectDates, formattedprojectDescription]);
 
-//         });
-//     }
-// };
+
+        });
+    }
+};
 
 // display the items in the resume
 bio.display();
 work.display();
-// projects.display();
 education.display();
+projects.display();
+
 
 // add map in the resume
 $("#mapDiv").append(googleMap);
+$(".slide-menu-button").on('click', function() {
+    $('body').toggleClass('menu-hidden');
+});
